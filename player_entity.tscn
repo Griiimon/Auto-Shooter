@@ -1,0 +1,82 @@
+[gd_scene load_steps=13 format=3 uid="uid://c80jywd40onpn"]
+
+[ext_resource type="PackedScene" uid="uid://t1r0bdbqu44a" path="res://base_entity.tscn" id="1_mxrka"]
+[ext_resource type="Script" uid="uid://6pgsqpnpuyf6" path="res://player_entity.gd" id="2_ddyhw"]
+[ext_resource type="PackedScene" uid="uid://dksbh0ntqxnq5" path="res://area_target_acquirer.tscn" id="3_ddyhw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mxrka"]
+albedo_color = Color(0.252181, 0.40146, 0.365871, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ddyhw"]
+material = SubResource("StandardMaterial3D_mxrka")
+
+[sub_resource type="SphereMesh" id="SphereMesh_mu7t1"]
+radius = 0.155
+height = 0.33
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_epg4t"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_rlois"]
+material = SubResource("StandardMaterial3D_epg4t")
+radius = 0.03
+height = 0.06
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vugkb"]
+albedo_color = Color(0.750173, 0.415234, 0.453817, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ruf4x"]
+material = SubResource("StandardMaterial3D_vugkb")
+radius = 0.155
+height = 0.285
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efeq7"]
+albedo_color = Color(0.320393, 0.0555286, 0.389141, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xwsi0"]
+material = SubResource("StandardMaterial3D_efeq7")
+size = Vector3(0.405, 0.655, 0.785)
+
+[node name="Player Entity" instance=ExtResource("1_mxrka")]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("2_ddyhw")
+speed = 5.0
+
+[node name="Model" type="Node3D" parent="." index="3"]
+
+[node name="Body" type="MeshInstance3D" parent="Model" index="0"]
+mesh = SubResource("CapsuleMesh_ddyhw")
+
+[node name="Eye" type="MeshInstance3D" parent="Model/Body" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.176977, 0.700204, -0.288594)
+mesh = SubResource("SphereMesh_mu7t1")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model/Body/Eye" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0523748, -0.140829)
+mesh = SubResource("SphereMesh_rlois")
+
+[node name="Eye2" type="MeshInstance3D" parent="Model/Body" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.177, 0.7, -0.289)
+mesh = SubResource("SphereMesh_mu7t1")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model/Body/Eye2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0523748, -0.140829)
+mesh = SubResource("SphereMesh_rlois")
+
+[node name="Nose" type="MeshInstance3D" parent="Model/Body" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.506896, -0.484496)
+mesh = SubResource("SphereMesh_ruf4x")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model/Body" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.859747, 0.102066)
+mesh = SubResource("BoxMesh_xwsi0")
+
+[node name="Area Target Acquirer" parent="." index="4" instance=ExtResource("3_ddyhw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+detection_mask = 4
+los_raycast_length = 5.0
+los_raycast_mask = 5

@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://big4te607vgrc"]
+
+[ext_resource type="Script" uid="uid://dcvi5gta251u5" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://bgvr4okbjkt16" path="res://enemy_spawner.gd" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://c80jywd40onpn" path="res://player_entity.tscn" id="2_lquwl"]
+[ext_resource type="PackedScene" uid="uid://dlx25ya3rr1i1" path="res://enemy.tscn" id="3_1bvp3"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ig7tw"]
+vertices = PackedVector3Array(2.5, 0.45, 3.5, 2.75, 0.45, 5.25, 9.5, 0.45, 5, 9.5, 0.45, -9.5, -9.5, 0.45, 4, -2.5, 0.45, 4, -2.25, 0.45, 3.5, -9.5, 0.45, -9.5, -1, 0.45, 9.5, -0.75, 0.45, 5.75, -2.5, 0.45, 5.5, -9.5, 0.45, 9.5, 2.5, 0.45, 5.75, 9.5, 0.45, 9.5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(0, 6, 3), PackedInt32Array(3, 6, 7), PackedInt32Array(10, 9, 8), PackedInt32Array(4, 5, 10), PackedInt32Array(4, 10, 11), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 9, 12), PackedInt32Array(12, 1, 2), PackedInt32Array(2, 13, 12), PackedInt32Array(12, 13, 8)]
+geometry_parsed_geometry_type = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xm2m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bvp3"]
+albedo_color = Color(0.404877, 0.350569, 0.104622, 1)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_0xm2m")
+
+[node name="Player Entity" parent="." instance=ExtResource("2_lquwl")]
+transform = Transform3D(0.494427, 0, -0.869219, 0, 1, 0, 0.869219, 0, 0.494427, 0.447672, 1.7052, 8.05319)
+
+[node name="Enemy Spawner" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+script = ExtResource("2_h2yge")
+run_on_start = false
+enemy_scene = ExtResource("3_1bvp3")
+target = NodePath("")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_ig7tw")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+cast_shadow = 0
+use_collision = true
+size = Vector3(20, 0.1, 20)
+material = SubResource("StandardMaterial3D_0xm2m")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.49148, 4.66691)
+use_collision = true
+size = Vector3(4, 2, 1)
+material = SubResource("StandardMaterial3D_1bvp3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.918522, -0.395369, 0, 0.0616721, 0.143277, 0.987759, -0.39053, -0.907279, 0.155986, 0, 7.84914, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.843392, 0.5373, 0, -0.5373, 0.843392, 0, 6.669, 12.947)
+
+[node name="UI" type="CanvasLayer" parent="."]

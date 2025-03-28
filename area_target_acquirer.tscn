@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dksbh0ntqxnq5"]
+
+[ext_resource type="Script" uid="uid://bn3s8r63jdvma" path="res://area_target_acquirer.gd" id="1_jiffm"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mlxxx"]
+radius = 10.0
+
+[node name="Area Target Acquirer" type="Node3D"]
+script = ExtResource("1_jiffm")
+
+[node name="Detection Area" type="Area3D" parent="."]
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Detection Area"]
+shape = SubResource("SphereShape3D_mlxxx")
+
+[connection signal="body_entered" from="Detection Area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="Detection Area" to="." method="_on_detection_area_body_exited"]
