@@ -80,3 +80,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 detection_mask = 4
 los_raycast_length = 5.0
 los_raycast_mask = 5
+debug = true

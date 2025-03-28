@@ -10,5 +10,9 @@ func update_target():
 		navigation_agent.target_position= player_target_acquirer.get_target_position()
 
 
-func _on_target_update_timer_timeout() -> void:
+func _on_pathfinding_update_timeout() -> void:
+	update_target()
+
+
+func _on_player_target_acquirer_found_new_target() -> void:
 	update_target()

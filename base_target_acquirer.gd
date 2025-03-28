@@ -1,6 +1,8 @@
 class_name TargetAcquirer
 extends Node3D
 
+signal found_new_target
+
 @export var enable_update_interval: bool= true
 @export var update_interval: float= 1.0
 
@@ -13,6 +15,8 @@ extends Node3D
 var target_ref: WeakRef
 var update_timer: Timer
 
+var debug_label_target: Label3D
+
 
 
 func _ready():
@@ -24,7 +28,12 @@ func _ready():
 		update_timer.timeout.connect(_on_update_timer_timeout)
 
 	if debug:
-		debug_label_target= Label3D.new
+		debug_label_target= Label3D.new()
+		add_child(debug_label_target)
+		debug_label_target.position.y= 1
+		debug_label_target.billboard= BaseMaterial3D.BILLBOARD_ENABLED
+		debug_label_target.font_size= 50
+		debug_label_target.modulate= Color.RED
 
 
 func update_target():
@@ -32,7 +41,11 @@ func update_target():
 
 
 func set_target(node: Node3D):
+	if not is_target(node):
+		found_new_target.emit.call_deferred()
 	target_ref= weakref(node)
+	if debug:
+		debug_label_target.text= node.name
 
 
 func has_target()-> bool:
@@ -49,6 +62,8 @@ func is_target(body: Node3D)-> bool:
 
 func cancel_target():
 	target_ref= null
+	if debug:
+		debug_label_target.text= "---"
 
 
 func can_set_target(node: Node3D)-> bool:

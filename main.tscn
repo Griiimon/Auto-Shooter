@@ -21,12 +21,11 @@ script = ExtResource("1_0xm2m")
 [node name="Player Entity" parent="." instance=ExtResource("2_lquwl")]
 transform = Transform3D(0.494427, 0, -0.869219, 0, 1, 0, 0.869219, 0, 0.494427, 0.447672, 1.7052, 8.05319)
 
-[node name="Enemy Spawner" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+[node name="Enemy Spawner" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 script = ExtResource("2_h2yge")
 run_on_start = false
 enemy_scene = ExtResource("3_1bvp3")
-target = NodePath("")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_ig7tw")
