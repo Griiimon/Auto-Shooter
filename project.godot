@@ -21,7 +21,7 @@ Global="*res://global/global.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/script-tabs/plugin.cfg")
+enabled=PackedStringArray()
 
 [physics]
 

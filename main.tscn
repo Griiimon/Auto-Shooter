@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://big4te607vgrc"]
 
 [ext_resource type="Script" uid="uid://dcvi5gta251u5" path="res://main.gd" id="1_0xm2m"]
-[ext_resource type="Script" uid="uid://bgvr4okbjkt16" path="res://enemy_spawner.gd" id="2_h2yge"]
-[ext_resource type="PackedScene" uid="uid://c80jywd40onpn" path="res://player_entity.tscn" id="2_lquwl"]
-[ext_resource type="PackedScene" uid="uid://dlx25ya3rr1i1" path="res://enemy.tscn" id="3_1bvp3"]
+[ext_resource type="Script" uid="uid://bgvr4okbjkt16" path="res://misc/enemy_spawner.gd" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://c80jywd40onpn" path="res://entities/player_entity.tscn" id="2_lquwl"]
+[ext_resource type="PackedScene" uid="uid://dlx25ya3rr1i1" path="res://entities/enemy.tscn" id="3_1bvp3"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ig7tw"]
 vertices = PackedVector3Array(2.5, 0.45, 3.5, 2.75, 0.45, 5.25, 9.5, 0.45, 5, 9.5, 0.45, -9.5, -9.5, 0.45, 4, -2.5, 0.45, 4, -2.25, 0.45, 3.5, -9.5, 0.45, -9.5, -1, 0.45, 9.5, -0.75, 0.45, 5.75, -2.5, 0.45, 5.5, -9.5, 0.45, 9.5, 2.5, 0.45, 5.75, 9.5, 0.45, 9.5)

@@ -2,7 +2,6 @@ extends Node3D
 
 @export var run_on_start: bool= true
 @export var enemy_scene: PackedScene
-@export var target: NavigationTarget
 
 
 
